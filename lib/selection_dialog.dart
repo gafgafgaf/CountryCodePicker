@@ -190,6 +190,11 @@ class _SelectionDialogState extends State<SelectionDialog> {
 
   void _filterElements(String s) {
     s = s.toUpperCase();
+    if (s.startsWith('00') && s.length > 2) {
+      s = '+${s.substring(2)}';
+    } else if (s.startsWith('0') && s.length > 1) {
+      s = '+${s.substring(1)}';
+    }
     setState(() {
       filteredElements = widget.elements
           .where((e) =>
